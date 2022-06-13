@@ -6,14 +6,20 @@ using Reexport
 @reexport using DiffEqBase
 
 using LinearAlgebra
+using Parameters
+using OrdinaryDiffEq
+using RecursiveArrayTools
+using BenchmarkTools
 using SIMD
 
-const CompiledFloats = Union{Float32,Float64}
+export  IRKGL_simd, IRKGL_Seq, IRKAlgorithm
+export  VecArray, floatType, IRKGLCoefficients
+export  WPTests, launch_IRKGL_simd_tests, launch_IRKGL_seq_tests
+export  launch_method_tests
 
-include("IRK16_seq.jl")
-include("IRK16_SIMD.jl")
-
-export IRK16, IRK16_SIMD
-export CompiledFloats
+include("IRKGL_Coefficients.jl")
+include("IRKGL_Seq.jl")
+include("IRKGL_SIMD_Solver.jl")
+include("MyBenchmarksTools.jl")
 
 end # module
