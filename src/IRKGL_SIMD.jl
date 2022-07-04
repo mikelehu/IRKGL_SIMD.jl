@@ -14,7 +14,8 @@ using SIMD
 
 export  IRKGL_simd, IRKGL_Seq, IRKAlgorithm
 export  VecArray, floatType, IRKGLCoefficients
-export  WPTests, launch_IRKGL_simd_tests, launch_IRKGL_seq_tests
+export  WPTests, launch_IRKGL_simd_tests
+#export  launch_IRKGL_seq_tests, launch_IRKGL16_tests
 export  launch_method_tests
 
 include("IRKGL_Coefficients.jl")

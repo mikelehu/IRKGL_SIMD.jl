@@ -4,7 +4,7 @@ struct WPTests
 end
 
 
-function launch_IRKGL_seq_tests(final_state, prob, s, dts; initial_interp=true, itermax=100, nruns=10)
+function launch_IRKGL_seq_tests(final_state, prob, s, dts;  initial_interp=true, itermax=100, nruns=10)
 
 #
 #    @belapsed erabiltzea problemak ematen ditu!!!
@@ -22,11 +22,11 @@ function launch_IRKGL_seq_tests(final_state, prob, s, dts; initial_interp=true, 
        dti=dts[i]
        n=Int64((tf-t0)/dti)
        # m=n => save_everystep=false
-       soli=IRKGL_Seq(s, u0, t0, tf, 1, n, f, p, initial_interp=initial_interp, itermax=itermax)
+       soli=IRKGL_Seq(s, u0, t0, tf, 1, n, f, p,  initial_interp=initial_interp, itermax=itermax)
        errors[i]=norm(final_state-soli.u[end])/norm(final_state)
 
        for k in 1:nruns
-           times[i]+=@elapsed IRKGL_Seq(s, u0, t0, tf, 1, n, f, p, initial_interp=initial_interp, itermax=itermax)
+           times[i]+=@elapsed IRKGL_Seq(s, u0, t0, tf, 1, n, f, p,  initial_interp=initial_interp, itermax=itermax)
        end
 
        times[i]=times[i]/nruns
@@ -36,6 +36,42 @@ function launch_IRKGL_seq_tests(final_state, prob, s, dts; initial_interp=true, 
      WPTests(errors,times)
 
 end
+
+
+function launch_IRKGL16_tests(method, final_state, prob, dts; initial_interp=true, nruns=10)
+
+#
+#    @belapsed erabiltzea problemak ematen ditu!!!
+#
+     k=length(dts)
+     errors=zeros(k)
+     times=zeros(k)
+
+     @unpack f,u0,tspan,p,kwargs=prob
+     t0=tspan[1]
+     tf=tspan[2]
+
+     for i in 1:k
+
+       dti=dts[i]
+       #n=Int64((tf-t0)/dti)
+       # m=n => save_everystep=false
+
+       soli=solve(prob,method, dt=dti, adaptive=false, save_everystep=false)
+       errors[i]=norm(final_state-soli.u[end])/norm(final_state)
+
+       for k in 1:nruns
+           times[i]+=@elapsed solve(prob,method, dt=dti, adaptive=false, save_everystep=false)
+       end
+
+       times[i]=times[i]/nruns
+
+     end
+
+     WPTests(errors,times)
+
+end
+
 
 
 function launch_IRKGL_simd_tests(final_state, prob, dim, s, dts; initial_interp=-1, partitioned=false, floatType=Float64, maxiters=100, nruns=10)
