@@ -66,7 +66,7 @@ sol = solve(prob,IRKGL_simd(s=s, dim=dim,initial_interp=0),dt=dt)
 plot(sol, xlabel="t", title="Rigid Body problem")
 ```
 
-![Rigid-body](/Benchmarks/Rigid-body Example1.png)
+![Rigid-body](/Benchmarks/Rigid-body-Example1.png)
 
 
 ### Step 3: Benchmark
@@ -103,7 +103,7 @@ wp = WorkPrecisionSet(prob,abstols,reltols,setups;appxsol=test_sol,save_everyste
 
 plot(wp)
 ```
-![Rigid-body benchmark](/Benchmarks/Rigid-body Example2.png)
+![Rigid-body benchmark](/Benchmarks/Rigid-body-Example2.png)
 
 
 ## More Examples
