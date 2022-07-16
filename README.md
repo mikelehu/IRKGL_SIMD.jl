@@ -108,4 +108,4 @@ plot(wp)
 
 ## More Examples
 
-[Benchmarks](https://github.com/mikelehu/IRKGL_SIMD.jl/Benchmarks)
+[Benchmarks](https://github.com/mikelehu/IRKGL_SIMD.jl/tree/master/Benchmarks)
