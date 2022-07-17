@@ -32,7 +32,7 @@ julia>using IRKGL_SIMD
 - dt: stepsize
 - save_everystep: default is true
 - adaptive: false  (soon  we will include the adaptive step size strategy)
-- maxiters: maximum number of iterations before stoppin
+- maxiters: maximum number of iterations before stopping
 
 
 ### No common arguments
