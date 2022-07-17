@@ -25,6 +25,27 @@ julia>Pkg.add(path="https://github.com/mikelehu/IRKGL_SIMD")
 julia>using IRKGL_SIMD
 ```
 
+## Solver options
+
+### Available common arguments
+
+- dt: stepsize
+- save_everystep: default is true
+- adaptive: false  (soon  we will include the adaptive step size strategy)
+- maxiters: maximum number of iterations before stoppin
+
+
+### No common arguments
+
+- s: number of stages of IRKGL, two options s=8 or s=4. Default 8.
+- partitioned: false=General First Order ODE, true=Second Order ODE. Default false
+- initial_interp: initialization method for stages.
+        - =0  simplest initialization
+        - =-1 interpolating from the stage values of previous step
+- dim: the user must assign ```julia length(size(u0))``` value
+- m: output saved at every m steps. Default 1.
+- myoutputs: default false
+
 ## Example: Rigid-body problem
 
 ```julia
