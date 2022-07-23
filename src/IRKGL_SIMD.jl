@@ -16,11 +16,11 @@ export  IRKGL_simd, IRKGL_Seq, IRKAlgorithm
 export  VecArray, floatType, IRKGLCoefficients
 export  WPTests, launch_IRKGL_simd_tests
 #export  launch_IRKGL_seq_tests, launch_IRKGL16_tests
-export  launch_method_tests
+#export  launch_method_tests
 
 include("IRKGL_Coefficients.jl")
 include("IRKGL_Seq.jl")
 include("IRKGL_SIMD_Solver.jl")
-include("MyBenchmarksTools.jl")
+#include("MyBenchmarksTools.jl")
 
 end # module

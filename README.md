@@ -70,6 +70,10 @@ end
 p = [-2.0,1.25,-0.5]
 u0 = [1.0;0.0;0.9]
 
+t0=0.
+tF=100.0
+tspan=(t0,tF)
+
 dim=length(size(u0))
 prob = ODEProblem(RigidBody!,u0,tspan,p);
 ```
@@ -77,11 +81,7 @@ prob = ODEProblem(RigidBody!,u0,tspan,p);
 ### Step 2: Solving the problem
 
 ```julia
-t0=0.
-tF=100.0
 dt=0.02
-tspan=(t0,tF)
-
 s=8
 sol = solve(prob,IRKGL_simd(s=s, dim=dim,initial_interp=0),dt=dt)
 plot(sol, xlabel="t", title="Rigid Body problem")
